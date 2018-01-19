@@ -1,0 +1,158 @@
+一、准备工作
+项目构成：
+1、 准备要用到的文件夹
+在src/component的目录下创建以下.vue文件：
+	utility: header（页头）/footer（页尾）/notFound（404）/service（网络请求服务）/carsousel（轮播组件）
+	login          登录页面
+	register       注册页面
+	index          首页面
+	main           首页面
+	news           新闻文件夹
+	  --newsIndex.vue           新闻列表
+	  --newsIndexComponent.vue  新闻列表动态改变的组件
+	  --newsDetail.vue          新闻详情
+	  --newsDetail.vue          新闻详情页面动态改变的组件
+	hero           英雄的资料的文件夹
+	  --heroes.vue              所有英雄介绍页面的固定组件
+	  --heroesComponent.vue     所有英雄介绍页面的动态改变的组件
+	  --herodetail.vue          英雄详情页的固定组件
+	  --herodetailComponent.vue 英雄详情页的动态改变的组件
+	goods          游戏物品的页面
+	  --goods.vue               游戏物品的固定组件
+	  --goodsComponent.vue      游戏物品的动态组件
+	callCenter     客服中心
+	userCenter     用户中心
+	gamewall       游戏壁纸
+	  
+
+2、准备资源文件
+在src目录下assets下创建img、css、font、js文件夹
+将项目中所有图片放到img目录下
+将样式类文件都拷贝到assets目录的css目录
+将fonts目录拷贝到assets目录下
+
+
+二、在各个文件夹中创建需要用到的组件、配置路由、模块的引入
+1、完成的组件和声明
+组件的selector设置为：
+storeHeader、storeFooter、storeIndex、storeLogin、storeRegister、storeList、storeDetail、storeCart、storeOrderConfirm、storeUserCenter、notFound
+
+组件类设置为：HeaderComponent、FooterComponent、IndexComponent、LoginComponent、RegisterComponent、ListComponent、DetailComponent、CartComponent、OrderConfirmComponent、UserCenterComponent、NotFoundComponent、
+
+到app.module.ts中进行组件的声明
+
+
+2、配置路由
+app目录下，创建app.router.ts,自定义路由模块类，设置导出的类名为AppRoutingModule,
+
+路由地址设置为：login、register、index、main、hero、goods、news、newsDetail、gamewall、
+
+并在路由模块中完成所有的组件的路由地址的配置，同时设置路由地址为空时，加载IndexComponent；异常情况跳转到NotFoundComponent
+
+3、完成项目中需要用到的模块的引入
+比如：FormsModule、AppRoutingModule、HttpModule等
+
+
+
+三、实现notFound对应的组件
+显示一个图片和一个按钮（返回）,居中显示
+footer
+header：
+	功能要求：
+	检查用户是否登录
+	根据用户是否登录，决定显示的内容(
+	未登录：注册|登录
+	已登录：欢迎 dingding ，退出| 用户中心
+	)
+	步骤：
+	①创建一个网络请求的服务 ，在AppModule指定providers
+	设置1 客户端：
+	this.http.get(myUrl,	{withCredentials:true})
+	设置2 服务端：
+	header('Access-Control-Allow-Origin:http://localhost:3000');
+	header('Access-Control-Allow-Credentials:true');
+
+	②准备服务器端环境：开启apache、mySql
+	③准备对应的服务器端的文件
+	检查是否登录:session_data.php
+	退出： logout.php
+
+
+四、实现index(在实现index的时候需要实现header/footer)
+
+实现index首页。
+①向服务器端发请求
+pruduct index.php
+②将数据拿到 显示
+ 2.1 轮播图组件（carouselItems）、
+ 2.2推荐商品（recommendedItems）、
+ 2.3新到商品(newArrivalItems)
+
+五、实现list
+①向服务器端请求数据
+product/list.php
+②商品列表页面，一加载进来有数据
+③分页功能
+根据服务器端所返回的数据pageCount决定要渲染几个用来分页的按钮
+
+根据pageCount，初始化一个数组，数组中有pageCount数量对应的元素
+
+定义一个变量来记录当前是哪一页。
+
+
+六、Login 
+
+获取用户输入的用户名和密码，点击登录时，将数据发给服务器login.php
+，如果登录成功，跳转到index
+
+
+七、实现cart
+
+①请求data/cart/list.php，获取购物车列表
+②将购物车列表的数据 显示在视图中
+③点击购物车中的每一项的加减号，能够让金额也随着变化
+④点击去结算，跳转到订单确认页面
+
+
+八、实现orderConfirm
+
+路由嵌套
+orderConfirm.component.ts
+①在orderConfirm文件夹中创建3个组件
+orderConfirmStepOne.component.ts(确认订单信息)
+orderConfirmStepTwo.component.ts(进行支付)
+orderConfirmStepThree.component.ts(
+ h1(5s自动返回首页) 
+)
+②准备嵌套
+在orderConfirm.component.ts指定一个容器（路由出口）
+③给要准备嵌套的3个组件指定路由地址，当路由地址为空，访问orderConfirmStepOne.component.ts
+
+
+
+注意：
+1、网络请求
+在Angular中如果涉及到与服务器端的通信中有session，需要做两个设置：
+①在客户端发请求时允许携带凭证this.http.get(myUrl,{withCredentials:true})
+     
+②在服务器端要设置origin 和 credentials
+header('Access-Control-Allow-Origin:http://localhost:3000');
+header('Access-Control-Allow-Credentials:true');
+
+
+2、前端如果涉及到网络通信
+
+2.1 
+f12=>network-》每一次请求的header/response是否正确
+
+2.2 
+确保:
+url
+根据服务器端后台文件需要的参数 进行传参（传参的个数、类型）
+
+
+
+
+
+
+
