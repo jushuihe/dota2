@@ -55,7 +55,7 @@
       searchData() {
         // console.log(this.InputVal);
         this.searchFlag = false;
-        this.$http.get("http://127.0.0.1:3000/service/service/data/" + this.InputVal)
+        this.$http.get("http://miko.applinzi.com/service/service/data/" + this.InputVal)
           .then(function (response) {
             this.searchResult = response.body.msg;
             // console.log( this.searchResult);

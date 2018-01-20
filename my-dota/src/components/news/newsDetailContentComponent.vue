@@ -113,7 +113,7 @@
         newsStyle: null, // 新闻的类型
         theConnectUrl: 'http://176.211.99.125:3000/', //保存当前的node 的服务器的地址
         theConnectUrl1: 'http://176.211.99.144:3000/', //保存当前的node 的服务器的地址
-        theConnectLocalUrl: 'http://127.0.0.1:3000/'
+        theConnectLocalUrl: 'http://miko.applinzi.com/'
       };
     },
     components: {
@@ -126,7 +126,6 @@
         // console.log(scrollTop);
         if (scrollTop > 400) this.anchorShow = true;
         else this.anchorShow = false;
-
         // console.log(this.anchorShow);
       },
       toTop(topheight) {
@@ -136,7 +135,7 @@
             clearInterval(timer);
             timer = null;
           }
-        }, 1);
+        },1);
       },
       getNowPageData() { //向服务器请求数据并且 将数据渲染到页面上
         this.$http.get(this.theConnectLocalUrl + "news/detail/" + this.newsId).then((data) => {

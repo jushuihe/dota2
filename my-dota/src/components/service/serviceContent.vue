@@ -236,7 +236,7 @@
           this.qsubtype = parseInt(tar.firstChild.getAttribute("data-toggle").split(",")[1]);
           // console.log(this.qtype,this.qsubtype);
         }
-        this.$http.get("http://127.0.0.1:3000/service/" + this.qtype + "/" + this.qsubtype)
+        this.$http.get("http://miko.applinzi.com/service/" + this.qtype + "/" + this.qsubtype)
           .then(function (response) {
             // console.log(response);
             this.qLists = response.body.msg;
@@ -260,7 +260,7 @@
       //     // console.log(flag);
       // }
       getInitAnswer(tid) {
-        this.$http.get("http://127.0.0.1:3000/service/" + tid)
+        this.$http.get("http://miko.applinzi.com/service/" + tid)
           .then(function (response) {
             var res = response.body.msg;
             this.qtitle = res[0].qtitle;

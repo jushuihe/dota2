@@ -564,8 +564,9 @@
         theConnectUrl1:'http://176.211.99.67:3000/',
         theConnectUrl2:'http://176.211.99.144:3000/',
         theConnectUrl3:'http://176.211.99.125:3000/', 
-        theConnectUrl5:'http://176.211.99.95:3000/', 
         theConnectUrl4:'http://127.0.0.1:3000/', 
+        theConnectUrl5:'http://176.211.99.95:3000/', 
+        theConnectUrl6:'http://miko.applinzi.com/', 
         theConnect:"http://176.211.99.51:3000/"
       }
     },
@@ -693,11 +694,11 @@
         let y = e.pageY || e.clientY + scrollY;
         ele.style.display="block";
         if(this.isShowSkillVideo){
-          ele.style.left = (x-eleX)-1050+"px";
-          ele.style.top  = y-eleY-2180+"px";
+          ele.style.left = (x-eleX)-1200+"px";
+          ele.style.top  = y-eleY-2280+"px";
         }else{
-          ele.style.left = (x-eleX)-1050+"px";
-          ele.style.top  = y-eleY-1950+"px";
+          ele.style.left = (x-eleX)-1200+"px";
+          ele.style.top  = y-eleY-2050+"px";
         }
         // console.log(x,eleX,y,eleY);
         // console.log(x-eleX);
@@ -710,7 +711,7 @@
       
     },
     created:function(){
-      this.theConnect = this.theConnectUrl4;
+      this.theConnect = this.theConnectUrl6;
       this.hid = this.heroId;
       this.$http.get(this.theConnect+"hero/detail/"+this.hid).then((data)=>{
         console.log(data.body);

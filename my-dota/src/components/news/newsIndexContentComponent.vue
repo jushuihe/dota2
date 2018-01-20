@@ -119,7 +119,7 @@
         theTwoShow: true, //页码条里面的 第二个省略号是否显示
         theConnectUrl: 'http://176.211.99.125:3000/', //保存当前的node 的服务器的地址
         theConnectUrl1: 'http://176.211.99.144:3000/', //保存当前的node 的服务器的地址
-        theConnectLocalUrl: 'http://127.0.0.1:3000/'
+        theConnectLocalUrl: 'http://miko.applinzi.com/'
       };
     },
     components: {
@@ -167,6 +167,7 @@
 
         this.$http.get(this.theConnectLocalUrl + "news/index/" + this.news_style + "/" + this.pno).then((data) => {
           this.showData = data.body.data;
+          console.log(this.showData);
           this.pno = parseInt(data.body.pno);
           this.totalCount = parseInt(data.body.totalCount);
           this.totalPage = Math.ceil(this.totalCount / 10);

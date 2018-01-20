@@ -49,11 +49,12 @@
         theConnectUrl3:'http://176.211.99.125:3000/', 
         theConnectUrl4:'http://127.0.0.1:3000/', 
         theConnectUrl5:'http://176.211.99.95:3000/', 
+        theConnectUrl6:'http://miko.applinzi.com/', 
         theConnect:"http://176.211.99.51:3000/"
       }
     },
     created:function(){
-      this.theConnect = this.theConnectUrl4;
+      this.theConnect = this.theConnectUrl6;
       this.$http.get(this.theConnect+"goods/detail/"+this.goodsId).then((data)=>{
         let obj = data.body[0];
         // console.log(obj);
